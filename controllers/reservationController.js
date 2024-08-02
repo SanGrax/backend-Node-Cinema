@@ -45,5 +45,17 @@ const getReservationsByMovie = async (req, res) => {
     }
 };
 
-module.exports = { createReservation, getReservations, getReservationsByMovie };
+const getReservationById = async (req, res) => {
+    try {
+        const reservation = await Reservation.findById(req.params.id).populate('movie').populate('user');
+        if (!reservation) {
+            return res.status(404).json({ message: 'Reservation not found' });
+        }
+        res.status(200).json(reservation);
+    } catch (error) {
+        res.status(400).json({ message: 'Error fetching reservation', error });
+    }
+};
+
+module.exports = { createReservation, getReservations, getReservationsByMovie , getReservationById};
 
