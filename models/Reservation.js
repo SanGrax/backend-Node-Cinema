@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema;// Create a shorthand for the Mongoose Schema constructor
 
+// Define the schema for a reservation
 const reservationSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     movie: { type: Schema.Types.ObjectId, ref: 'Movie', required: true },
